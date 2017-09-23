@@ -21,12 +21,7 @@ Conhecido como o canivete suíço da Internet e a fita adesiva que a mantém int
 1. Origens e Influências
 2. Classificação
 3. Características
-  3. Strings e expressões regulares
-  3. Contexto de variáveis
-  3. Variável padrão
 4. Avaliação comparativa
-  4. Concatenação de strings
-  4. Desempenho
 5. Conclusão
 6. Bibliografia
 
