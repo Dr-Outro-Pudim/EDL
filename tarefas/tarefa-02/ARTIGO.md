@@ -20,12 +20,15 @@ Conhecido como o canivete suíço da Internet e a fita adesiva que a mantém int
 
 1. Origens e Influências
 2. Classificação
-3. Avaliação comparativa
-  3.1 Concatenação de strings
-  3.2 Contexto de variáveis
-  3.3 Variável padrão
-4. Conclusão
-5. Bibliografia
+3. Características
+  3. Strings e expressões regulares
+  3. Contexto de variáveis
+  3. Variável padrão
+4. Avaliação comparativa
+  4. Concatenação de strings
+  4. Desempenho
+5. Conclusão
+6. Bibliografia
 
 ## Origens e Influências
 
@@ -39,7 +42,7 @@ Em 1994 foi lançada a versão 5, tornando-se uma linguagem completa.
 
 ## Classificação
 
-* Multi-paradigma
+* Multiparadigma
   * Funcional
   * Imperativa
   * Orientada a objeto
@@ -47,7 +50,7 @@ Em 1994 foi lançada a versão 5, tornando-se uma linguagem completa.
   * Procedural
   * Orientada a evento
   * Genérica
-* Multi-plataforma
+* Multiplataforma
 * Tipagem dinâmica
 * Interpretada
 * Alto nível
@@ -62,6 +65,80 @@ Em 1994 foi lançada a versão 5, tornando-se uma linguagem completa.
 * Bioinformática
 * Desenvolvimento de sites
 * Computação gráfica
+
+## Características
+
+### Strings e expressões regulares
+
+### Contexto de variáveis
+
+> "You will be miserable until you learn the difference between scalar and list context"
+> — Programming Perl 3rd ed, page 69
+
+Os dois principais contextos são Escalar e Lista.
+
+O contexto é importante porque operandos podem se comportar de maneiras diferentes de acordo com ele.
+
+#### Contexto Escalar
+
+A atribuição à uma escalar faz com que o conteúdo atribuído seja avaliado em um contexto escalar.
+
+Ou seja, espera-se que um único valor seja atribuído.
+
+#### Contexto de Lista
+
+A atribuição à uma lista faz com que o conteúdo atribuído seja avaliado em um contexto de lista.
+
+Ou seja, espera-se que múltiplos valores sejam atribuídos.
+
+#### Exemplo 1
+
+```perl
+#!/usr/bin/perl
+
+@nomes = ('Rojas', 'Eustáquio', 'Magela');
+
+@copia = @nomes;
+$tamanho = @nomes;
+
+print "Os nomes são: @copia\n";
+print "Quantidade de nomes: $tamanho\n";
+
+```
+Na linha 5, uma lista está sendo atribuída à outra lista, assim criando uma cópia da lista.
+
+Na linha 6, uma lista está sendo atribuída à uma escalar, assim passando a quantidade de itens na lista.
+
+A saída será:
+
+```
+Os nomes são: Rojas Eustáquio Magela
+Quantidade de nomes: 3
+```
+
+#### Exemplo 2
+
+```perl
+my @linguagens = ('Pascal', 'Perl', 'Python');
+ 
+if (@linguagens) {
+   say "Existem itens nesta lista.";
+} else {
+   say "A lista está vazia.";
+}
+```
+
+O if espera receber uma escalar. Na linha 3 passamos uma lista para ele. Quando passamos uma lista em um contexto escalar, recebemos o tamanho da lista.
+
+Logo, se o tamanho da lista é 0, o if interpreta como FALSE. Se o tamanho é igual ou maior que 1, interpreta como TRUE. 
+
+A saída será:
+
+```
+Existem itens nessa lista.
+```
+
+### Variável padrão
 
 ## Avaliação Comparativa
 
@@ -137,76 +214,6 @@ Programas grandes escritos em Perl iniciam mais devagar do que programas semelha
 Uma vez que o código Perl é compilado, há sobrecarga adicional durante a fase de execução, que normalmente não acontece em programas escritos em linguagens compiladas, como C.
 
 Como Perl é uma linguagem interpretada, pode dar problemas quando a eficiência é crítica.
-
-### Contexto de variáveis
-
-> "You will be miserable until you learn the difference between scalar and list context"
-> — Programming Perl 3rd ed, page 69
-
-Os dois principais contextos são Escalar e Lista.
-
-O contexto é importante porque operandos podem se comportar de maneiras diferentes de acordo com ele.
-
-#### Contexto Escalar
-
-A atribuição à uma escalar faz com que o conteúdo atribuído seja avaliado em um contexto escalar.
-
-Ou seja, espera-se que um único valor seja atribuído.
-
-#### Contexto de Lista
-
-A atribuição à uma lista faz com que o conteúdo atribuído seja avaliado em um contexto de lista.
-
-Ou seja, espera-se que múltiplos valores sejam atribuídos.
-
-#### Exemplo 1
-
-```perl
-#!/usr/bin/perl
-
-@nomes = ('Rojas', 'Eustáquio', 'Magela');
-
-@copia = @nomes;
-$tamanho = @nomes;
-
-print "Os nomes são: @copia\n";
-print "Quantidade de nomes: $tamanho\n";
-
-```
-Na linha 5, uma lista está sendo atribuída à outra lista, assim criando uma cópia da lista.
-
-Na linha 6, uma lista está sendo atribuída à uma escalar, assim passando a quantidade de itens na lista.
-
-A saída será:
-
-```
-Os nomes são: Rojas Eustáquio Magela
-Quantidade de nomes: 3
-```
-
-#### Exemplo 2
-
-```perl
-my @linguagens = ('Pascal', 'Perl', 'Python');
- 
-if (@linguagens) {
-   say "Existem itens nesta lista.";
-} else {
-   say "A lista está vazia.";
-}
-```
-
-O if espera receber uma escalar. Na linha 3 passamos uma lista para ele. Quando passamos uma lista em um contexto escalar, recebemos o tamanho da lista.
-
-Logo, se o tamanho da lista é 0, o if interpreta como FALSE. Se o tamanho é igual ou maior que 1, interpreta como TRUE. 
-
-A saída será:
-
-```
-Existem itens nessa lista.
-```
-
-### Variável padrão
 
 ## Conclusão
 
