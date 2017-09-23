@@ -10,11 +10,22 @@ Grupo:
 ### Perl :dromedary_camel:
 
 * Practical Extraction and Reporting Language
-* Linguagem de Extração e Relatório prático
+* Linguagem de Extração e Relatório Prático
 
 Criado inicialmente para processar textos e gerar relatórios, é útil para aplicações que necessitam de facilidade de manipulação de strings.
 
 Conhecido como o canivete suíço da Internet e a fita adesiva que a mantém inteira, um pequeno código Perl é capaz de realizar muitas ações.
+
+## Índice
+
+1. Origens e Influências
+2. Classificação
+3. Avaliação comparativa
+  3.1 Concatenação de strings
+  3.2 Contexto de variáveis
+  3.3 Variável padrão
+4. Conclusão
+5. Bibliografia
 
 ## Origens e Influências
 
@@ -28,9 +39,20 @@ Em 1994 foi lançada a versão 5, tornando-se uma linguagem completa.
 
 ## Classificação
 
-* Alto nível
-* Interpretada
+* Multi-paradigma
+  * Funcional
+  * Imperativa
+  * Orientada a objeto
+  * Reflexiva
+  * Procedural
+  * Orientada a evento
+  * Genérica
+* Multi-plataforma
 * Tipagem dinâmica
+* Interpretada
+* Alto nível
+* Propósito geral
+* Software livre
 
 ### Alguns usos:
 
@@ -39,14 +61,15 @@ Em 1994 foi lançada a versão 5, tornando-se uma linguagem completa.
 * Finança
 * Bioinformática
 * Desenvolvimento de sites
+* Computação gráfica
 
 ## Avaliação Comparativa
 
 ### Concatenação de strings
 
-Mais fácil de escrever em Perl.
-
 #### Perl
+
+A concatenação de strings com Perl é bastante simples e não requer verbosidade excessiva.
 
 ```perl
 # Entrada
@@ -60,7 +83,7 @@ my $str2 = <STDIN>;
 chomp $str1;
 chomp $str2;
 
-# Concatena a str2 à str1
+# Concatena str2 à str1
 $str1 = $str1 . $str2;
 
 # Resultado
@@ -68,6 +91,10 @@ print "Concatenação: $str1\n";
 ```
 
 #### C
+
+Já em C, é necessário usar duas repetições for, uma para saber qual é o tamanho da primeira string e outra para fazer a concatenação em si, fazendo com que a verbosidade seja maior em comparação.
+
+A tipagem estática faz com que seus códigos sejam mais fáceis de ler, pois é necessário declarar todas as variáveis juntamente com seus tipos.
 
 ```c
 #include <stdio.h>
@@ -84,7 +111,7 @@ int main() {
   // Calcula o tamanho da string str1 e o guarda em i
   for(i = 0; str1[i] != '\0'; ++i);
 
-  // Concatena a str2 à str1
+  // Concatena str2 à str1
   for(j = 0; str2[j] != '\0'; ++j, ++i) {
     str1[i] = str2[j];
   }
@@ -99,21 +126,34 @@ int main() {
 }
 ```
 
+---
+
+Para escrever o mesmo programa em C, uma reestruturação significativa teve que ser feita. Logo, Perl tem maior expressividade. 
+
+### Desempenho
+
+Programas grandes escritos em Perl iniciam mais devagar do que programas semelhantes escritos em linguagens compiladas, isso porque Perl tem que compilar a fonte sempre que é executado. O interpretador Perl também gasta um tempo significativo procurando módulos dentro do seu longo caminho de inclusão.
+
+Uma vez que o código Perl é compilado, há sobrecarga adicional durante a fase de execução, que normalmente não acontece em programas escritos em linguagens compiladas, como C.
+
+Como Perl é uma linguagem interpretada, pode dar problemas quando a eficiência é crítica.
+
 ### Contexto de variáveis
 
-> "You will be miserable until you learn the difference between scalar and list context" -- Programming Perl 3rd ed, page 69
+> "You will be miserable until you learn the difference between scalar and list context"
+> — Programming Perl 3rd ed, page 69
 
 Os dois principais contextos são Escalar e Lista.
 
-O contexto importa porque operandos podem se comportar de maneira diferente de acordo com ele.
+O contexto é importante porque operandos podem se comportar de maneiras diferentes de acordo com ele.
 
-#### Contexto escalar
+#### Contexto Escalar
 
 A atribuição à uma escalar faz com que o conteúdo atribuído seja avaliado em um contexto escalar.
 
 Ou seja, espera-se que um único valor seja atribuído.
 
-#### Contexto de lista
+#### Contexto de Lista
 
 A atribuição à uma lista faz com que o conteúdo atribuído seja avaliado em um contexto de lista.
 
@@ -124,7 +164,7 @@ Ou seja, espera-se que múltiplos valores sejam atribuídos.
 ```perl
 #!/usr/bin/perl
 
-@nomes = ('Felipe', 'Marcio', 'Celma');
+@nomes = ('Rojas', 'Eustáquio', 'Magela');
 
 @copia = @nomes;
 $tamanho = @nomes;
@@ -140,29 +180,25 @@ Na linha 6, uma lista está sendo atribuída à uma escalar, assim passando a qu
 A saída será:
 
 ```
-Os nomes são: Felipe Marcio Celma
+Os nomes são: Rojas Eustáquio Magela
 Quantidade de nomes: 3
 ```
 
 #### Exemplo 2
 
 ```perl
-my @instrumentos = ('Guitarra', 'Gaita', 'Lata de leite Ninho');
+my @linguagens = ('Pascal', 'Perl', 'Python');
  
-if (@instrumentos) {
-   say "Existem itens nessa lista.";
+if (@linguagens) {
+   say "Existem itens nesta lista.";
 } else {
    say "A lista está vazia.";
 }
 ```
 
-O if espera receber uma escalar. Na linha 3 passamos uma lista para ele.
+O if espera receber uma escalar. Na linha 3 passamos uma lista para ele. Quando passamos uma lista em um contexto escalar, recebemos o tamanho da lista.
 
-Quando passamos uma lista em um contexto escalar, recebemos o tamanho da lista.
-
-Logo, se o tamanho da lista é 0, o if interpreta como FALSE.
-
-Se o tamanho é igual ou maior que 1, interpreta como TRUE. 
+Logo, se o tamanho da lista é 0, o if interpreta como FALSE. Se o tamanho é igual ou maior que 1, interpreta como TRUE. 
 
 A saída será:
 
@@ -170,13 +206,11 @@ A saída será:
 Existem itens nessa lista.
 ```
 
-#### Forçando um contexto escalar
-
-Para isso usamos a função scalar().
-
 ### Variável padrão
 
 ## Conclusão
 
 * Strings e expressões regulares
 * Contexto de variáveis (escalar e lista) e também a variável padrão "$_".
+
+## Bibliografia
