@@ -2,8 +2,8 @@
 
 Grupo:
 
-* @felipeog
-* @Dr-Pudim
+* @felipeog(Felipe Oliveira)
+* @Dr-Pudim(Renan Mendonça)
 
 ## Introdução
 
