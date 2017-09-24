@@ -5,6 +5,8 @@ Grupo:
 * @felipeog
 * @Dr-Pudim
 
+---
+
 ## Introdução
 
 ### Perl :dromedary_camel:
@@ -16,14 +18,18 @@ Criado inicialmente para processar textos e gerar relatórios, é útil para apl
 
 Conhecido como o canivete suíço da Internet e a fita adesiva que a mantém inteira, um pequeno código Perl é capaz de realizar muitas ações.
 
+---
+
 ## Índice
 
-1. Origens e Influências
-2. Classificação
-3. Características
-4. Avaliação comparativa
-5. Conclusão
-6. Bibliografia
+1. [Origens e Influências](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#origens-e-influências)
+2. [Classificação](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#classificação)
+3. [Características](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#características)
+4. [Avaliação comparativa](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#avaliação-comparativa)
+5. [Conclusão](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#conclusão)
+6. [Bibliografia](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#bibliografia)
+
+---
 
 ## Origens e Influências
 
@@ -34,6 +40,8 @@ A ideia do Larry era desenvolver uma linguagem que combinasse as expressões reg
 Em 1992 se encontrava na versão 4, quando se tornou uma linguagem padrão para Unix. Também nessa época ficou evidente que não era possível criar grandes programas com Perl.
 
 Em 1994 foi lançada a versão 5, tornando-se uma linguagem completa.
+
+---
 
 ## Classificação
 
@@ -61,13 +69,104 @@ Em 1994 foi lançada a versão 5, tornando-se uma linguagem completa.
 * Desenvolvimento de sites
 * Computação gráfica
 
+---
+
 ## Características
 
 ### Strings e expressões regulares
 
+Uma expressão regular é capaz de identificar uma cadeia de caracteres de interesse e aplicar alguma operação sobre ela.
+
+A sintaxe das expressões regulares no Perl se assemelha a das linguagens 'sed', grep e AWK.
+
+Para aplicar a expressão regular usamos =~.
+
+Existem três operadores de expressão regular no Perl:
+
+* Correspondência
+  * m//
+* Substituição
+  * s///
+* Transliteração
+  * tr///
+
+#### Correspondência
+
+Verifica se o padrão existe dentro da string especificada. Caso existe, retorna 1. Caso contrário, retorna 0.
+
+O caracter m pode ser omitido quando o delimitador usado é a barra. Caso contrário, ele é necessário.
+
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+$str = "Paralisação na UERJ.";
+
+if($str =~ /paralisação/i) {
+  print "Tem paralisação.\n";
+} else {
+  print "Não tem paralisação.\n";
+}
+```
+
+#### Substituição
+
+Verifica se o padrão existe dentro da string especificada. Caso exista, o conteúdo é substituído. Caso contrário, não.
+
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+$str = "O cachorro deitou no tapete.";
+print "$str\n";
+
+$str =~ s/cachorro/gato/;
+print "$str\n";
+```
+
+#### Transliteração
+
+A transliteração é parecida com a substituição, a diferença é que ela aceita uma lista como parâmetro de busca e outra como parâmetro de transliteração.
+
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+$str = "O drone sobrevoou a UERJ.";
+print "$str\n";
+
+$str =~ tr/drone, UERJ/Drone, Uerj/;
+print "$str\n";
+```
+
+#### Verificação simples de e-mail
+
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my $pattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}";
+
+print "Digite o e-mail: ";
+
+my $email = <STDIN>;
+chomp $email;
+
+if($email =~ /$pattern/) {
+  print "Válido.\n";
+} else {
+  print "Inválido.\n";
+}
+```
+
 ### Contexto de variáveis
 
 > "You will be miserable until you learn the difference between scalar and list context"
+
 > — Programming Perl 3rd ed, page 69
 
 Os dois principais contextos são Escalar e Lista.
@@ -90,6 +189,8 @@ Ou seja, espera-se que múltiplos valores sejam atribuídos.
 
 ```perl
 #!/usr/bin/perl
+use strict;
+use warnings;
 
 @nomes = ('Rojas', 'Eustáquio', 'Magela');
 
@@ -98,7 +199,6 @@ $tamanho = @nomes;
 
 print "Os nomes são: @copia\n";
 print "Quantidade de nomes: $tamanho\n";
-
 ```
 Na linha 5, uma lista está sendo atribuída à outra lista, assim criando uma cópia da lista.
 
@@ -114,6 +214,10 @@ Quantidade de nomes: 3
 #### Exemplo 2
 
 ```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
 my @linguagens = ('Pascal', 'Perl', 'Python');
  
 if (@linguagens) {
@@ -133,7 +237,57 @@ A saída será:
 Existem itens nessa lista.
 ```
 
-### Variável padrão
+### Variável padrão $_
+
+A variável padrão $_ é uma das variáveis especiais do Perl mais usada. Ela pode conter a entrada padrão ou a string de uma expressão regular.
+
+#### Exemplo 1
+
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+foreach('Larry ', 'Wall ', 'Perl ') {
+  print $_;
+}
+```
+
+A saída desse programa será cada um dos itens da lista.
+
+Isso acontece porque a cada iteração, o atual item da lista é colocado na variável padrão $_.
+
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+@nomes = ('Huga', 'Buga');
+for(@nomes) {
+  print;
+}
+```
+
+A saída desse programa também será cada um dos itens da lista.
+
+Podemos omitir a variável padrão $_.
+
+#### Exemplo 2
+
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my $emp_file = "employees.txt";
+open my $fh, "<", $emp_file # < é modo de leitura
+  or die "Can't open file: $_";
+
+close $fh
+  or die "Couldn't close file: $_";
+```
+
+---
 
 ## Avaliação Comparativa
 
@@ -144,6 +298,10 @@ Existem itens nessa lista.
 A concatenação de strings com Perl é bastante simples e não requer verbosidade excessiva.
 
 ```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
 # Entrada
 print "Digite a primeira string: ";
 my $str1 = <STDIN>;
@@ -210,9 +368,21 @@ Uma vez que o código Perl é compilado, há sobrecarga adicional durante a fase
 
 Como Perl é uma linguagem interpretada, pode dar problemas quando a eficiência é crítica.
 
+
+---
+
 ## Conclusão
 
-* Strings e expressões regulares
-* Contexto de variáveis (escalar e lista) e também a variável padrão "$_".
+---
 
 ## Bibliografia
+
+* [Derek Banas - Perl Tutorial](https://www.youtube.com/watch?v=WEghIXs8F6c)
+* [J. Korpela  - Perl](https://www.cs.tut.fi/~jkorpela/perl)
+* [Perl Maven](https://perlmaven.com/perl-tutorial)
+* [Perl Monks](http://www.perlmonks.org)
+* [Perl Programming Documentation](https://perldoc.perl.org/index.html)
+* [Somacon - Perl Programming](http://www.somacon.com/p385.php?cat=Perl+Programming)
+* [Tutorials Point  - Perl](https://www.tutorialspoint.com/perl)
+* [Wikipedia en - Perl](https://en.wikipedia.org/wiki/Perl)
+* [Wikipédia pt - Perl](https://pt.wikipedia.org/wiki/Perl)
