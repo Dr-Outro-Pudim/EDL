@@ -2,8 +2,8 @@
 
 Grupo:
 
-* @felipeog(Felipe Oliveira)
-* @Dr-Pudim(Renan Mendonça)
+* Felipe Oliveira @felipeog
+* Renan Mendonça @Dr-Pudim
 
 ---
 
@@ -25,7 +25,7 @@ Conhecido como o canivete suíço da Internet e a fita adesiva que a mantém int
 1. [Origens e Influências](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#origens-e-influências)
 2. [Classificação](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#classificação)
 3. [Características](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#características)
-4. [Avaliação Comparativa](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#avaliação-comparativa)
+4. [Avaliação Comparativa: Perl vs C](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#avaliação-comparativa-perl-vs-c)
 5. [Conclusão](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#conclusão)
 6. [Bibliografia](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#bibliografia)
 
@@ -121,6 +121,12 @@ if($str =~ /paralisação/i) {
 }
 ```
 
+A saída será:
+
+```
+Tem paralisação.
+```
+
 #### Substituição
 
 Verifica se o padrão existe dentro da string especificada. Caso exista, o conteúdo é substituído. Caso contrário, não.
@@ -137,6 +143,13 @@ $str =~ s/cachorro/gato/;
 print "$str\n";
 ```
 
+A saída será:
+
+```
+O cachorro deitou no tapete.
+O gato deitou no tapete.
+```
+
 #### Transliteração
 
 A transliteração é parecida com a substituição, a diferença é que ela aceita uma lista como parâmetro de busca e outra como parâmetro de transliteração.
@@ -151,6 +164,13 @@ print "$str\n";
 
 $str =~ tr/drone, UERJ/Drone, Uerj/;
 print "$str\n";
+```
+
+A saída será:
+
+```
+O drone sobrevoou a UERJ.
+O Drone sobrevoou a Uerj.
 ```
 
 #### Verificação simples de e-mail
@@ -265,7 +285,11 @@ foreach('Larry ', 'Wall ', 'Perl ') {
 }
 ```
 
-A saída desse programa será cada um dos itens da lista.
+A saída será:
+
+```
+Larry Wall Perl
+```
 
 Isso acontece porque a cada iteração, o atual item da lista é colocado na variável padrão $_.
 
@@ -274,13 +298,17 @@ Isso acontece porque a cada iteração, o atual item da lista é colocado na var
 use strict;
 use warnings;
 
-@nomes = ('Huga', 'Buga');
+@nomes = ('Huga ', 'Buga ', 'Buguei ');
 for(@nomes) {
   print;
 }
 ```
 
-A saída desse programa também será cada um dos itens da lista.
+A saída será:
+
+```
+Huga Buga Buguei
+```
 
 Nesse caso, podemos omitir a variável padrão $_.
 
@@ -300,6 +328,16 @@ close $fh
 ```
 
 Caso haja algum problema na abertura ou fechamento do arquivo, a variável padrão $_ conterá o nome do arquivo Perl e a linha onde onde o erro ocorreu.
+
+```
+Erro ao abrir: at arquivoPerl.pl line 6.
+```
+
+ou
+
+```
+Erro ao fechar: at arquivoPerl.pl line 9.
+```
 
 [Voltar ao topo](https://github.com/felipeog/EDL/blob/master/tarefas/tarefa-02/ARTIGO.md#artigo-perl)
 
