@@ -18,12 +18,12 @@ Conhecido como o canivete suíço da Internet e a fita adesiva que a mantém int
 
 ## Índice
 
-1. Origens e Influências
-2. Classificação
-3. Características
-4. Avaliação comparativa
-5. Conclusão
-6. Bibliografia
+[1. Origens e Influências](#OeI)
+[2. Classificação](#Class)
+[3. Características](#Carac)
+[4. Avaliação comparativa](#Ava)
+[5. Conclusão](#Conclu)
+[6. Bibliografia](#Biblio)
 
 ## Origens e Influências
 
@@ -35,7 +35,7 @@ Em 1992 se encontrava na versão 4, quando se tornou uma linguagem padrão para 
 
 Em 1994 foi lançada a versão 5, tornando-se uma linguagem completa.
 
-## Classificação
+##<a name="OeI"></a> Classificação
 
 * Multiparadigma
   * Funcional
@@ -61,7 +61,7 @@ Em 1994 foi lançada a versão 5, tornando-se uma linguagem completa.
 * Desenvolvimento de sites
 * Computação gráfica
 
-## Características
+##<a name="Carac"></a> Características
 
 ### Strings e expressões regulares
 
@@ -135,7 +135,7 @@ Existem itens nessa lista.
 
 ### Variável padrão
 
-## Avaliação Comparativa
+##<a name="Ava"></a> Avaliação Comparativa
 
 ### Concatenação de strings
 
@@ -210,9 +210,9 @@ Uma vez que o código Perl é compilado, há sobrecarga adicional durante a fase
 
 Como Perl é uma linguagem interpretada, pode dar problemas quando a eficiência é crítica.
 
-## Conclusão
+##<a name="Conclu"></a> Conclusão
 
 * Strings e expressões regulares
 * Contexto de variáveis (escalar e lista) e também a variável padrão "$_".
 
-## Bibliografia
+##<a name="Biblio"></a> Bibliografia
